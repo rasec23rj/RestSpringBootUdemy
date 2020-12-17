@@ -1,5 +1,7 @@
 package br.com.juliocesar.restwithspringudemy.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,15 @@ public class PessoaController {
 
 	@Autowired
 	private PessoaService pessoaService;
-	
+
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<PessoaModel> findAll() {
+		return pessoaService.findAll();
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PessoaModel findById(@PathVariable("id") String id) {
-		
 		return pessoaService.findById(id);
 	}
+
 }
