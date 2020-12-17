@@ -1,4 +1,4 @@
-package br.com.rasec23rj.restwithspringudemy;
+package br.com.juliocesar.restwithspringudemy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
