@@ -12,6 +12,7 @@ import br.com.juliocesar.restwithspringudemy.conversores.NumberConverter;
 import br.com.juliocesar.restwithspringudemy.exeption.UnsuportedMathOperationMethod;
 
 @RestController
+@RequestMapping("/greeting")
 public class GreetingController {
 
 	private SimpleMath matha = new SimpleMath();
