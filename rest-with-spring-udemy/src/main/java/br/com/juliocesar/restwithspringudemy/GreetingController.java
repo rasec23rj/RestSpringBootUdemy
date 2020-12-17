@@ -39,7 +39,18 @@ public class GreetingController {
 		Double sum = convertToDouble(numberOne) + convertToDouble(numberTwo);
 		return sum;
 	}
+	@RequestMapping(value = "/raiz/{numberOne}", method = RequestMethod.GET)
+	public Double raiz(@PathVariable("numberOne") String numberOne)
+			throws Exception {
 
+		if (!isNumeric(numberOne)) {
+			throw new UnsuportedMathOperationMethod("somente numeros");
+		}
+		Double raiz = (Double) Math.sqrt(convertToDouble(numberOne)) ;
+		return raiz;
+	}
+
+	
 	private Double convertToDouble(String strNumber) {
 		if (strNumber == null)
 			return 0D;
