@@ -1,50 +1,39 @@
 package br.com.juliocesar.restwithspringudemy.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import br.com.juliocesar.restwithspringudemy.exeption.ResourceNotFoundException;
 import br.com.juliocesar.restwithspringudemy.model.PessoaModel;
+import br.com.juliocesar.restwithspringudemy.repository.PessoaRepository;
 
 @Service
 public class PessoaService {
 
-	private final AtomicLong counter = new AtomicLong();
+	@Autowired
+	PessoaRepository pessoaRepository;
 
-	public PessoaModel findById(String id) {
-
-		PessoaModel pessoaModel = new PessoaModel(counter.incrementAndGet(), "Julio", "Cesar", "Rio de Jnaeiro", "M");
-		return pessoaModel;
+	public PessoaModel findbyId(Long id) {
+	
+		return pessoaRepository.findById(id).orElseThrow( () -> new ResourceNotFoundException("sem id"));
+		
 	}
 
 	public List<PessoaModel> findAll() {
-		List<PessoaModel> pessoaModel = new ArrayList<PessoaModel>();
-		for (int i = 0; i < 8; i++) {
-			PessoaModel pessoaModel2 = mockPessoa(i);
-			pessoaModel.add(pessoaModel2);
-
-		}
-
-		return pessoaModel;
-	}
-
-	private PessoaModel mockPessoa(int i) {
-		PessoaModel pessoaModel = new PessoaModel(counter.incrementAndGet(), "Frist name " + i, "Last name " + i,
-				"Some Addrres" + i, "M" + i);
-		return pessoaModel;
+		return pessoaRepository.findAll();
 	}
 
 	public PessoaModel create(PessoaModel pessoaModel) {
-		return pessoaModel;
+		
+		return pessoaRepository.save(pessoaModel);
 	}
 	
 	public PessoaModel update(PessoaModel pessoaModel) {
-		return pessoaModel;
+		PessoaModel entity = pessoaRepository.findById(pessoaModel.getId()).orElseThrow( () -> new ResourceNotFoundException("sem id"));
+		return pessoaRepository.save(entity);
 	}
 
-	public int delete(int id) {
-		return id;
-	}
+	// public PessoaModel delete(Long id) {
+	// 	return pessoaRepository.deleteById(id).orElseThrow();
+	// }
 }
