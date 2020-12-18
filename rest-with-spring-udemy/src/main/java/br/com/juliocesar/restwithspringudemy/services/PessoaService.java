@@ -11,30 +11,40 @@ import br.com.juliocesar.restwithspringudemy.model.PessoaModel;
 @Service
 public class PessoaService {
 
-	
 	private final AtomicLong counter = new AtomicLong();
-	
+
 	public PessoaModel findById(String id) {
-		
+
 		PessoaModel pessoaModel = new PessoaModel(counter.incrementAndGet(), "Julio", "Cesar", "Rio de Jnaeiro", "M");
-	    return pessoaModel;
+		return pessoaModel;
 	}
-	
-	public List<PessoaModel> findAll(){
+
+	public List<PessoaModel> findAll() {
 		List<PessoaModel> pessoaModel = new ArrayList<PessoaModel>();
 		for (int i = 0; i < 8; i++) {
 			PessoaModel pessoaModel2 = mockPessoa(i);
 			pessoaModel.add(pessoaModel2);
-			
+
 		}
-		
+
 		return pessoaModel;
 	}
 
 	private PessoaModel mockPessoa(int i) {
-		PessoaModel pessoaModel = new PessoaModel(counter.incrementAndGet(), "Frist name " + i, "Last name "  + i, "Some Addrres" + i, "M" + i);
+		PessoaModel pessoaModel = new PessoaModel(counter.incrementAndGet(), "Frist name " + i, "Last name " + i,
+				"Some Addrres" + i, "M" + i);
+		return pessoaModel;
+	}
+
+	public PessoaModel create(PessoaModel pessoaModel) {
 		return pessoaModel;
 	}
 	
-	
+	public PessoaModel update(PessoaModel pessoaModel) {
+		return pessoaModel;
+	}
+
+	public int delete(int id) {
+		return id;
+	}
 }
